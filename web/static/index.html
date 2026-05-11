@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>ClimaDash — Dashboard de Ação Climática</title>
+  <link rel="stylesheet" href="/style.css" />
+  <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.1/dist/chart.umd.min.js" defer></script>
+  <script src="/app.js" defer></script>
+</head>
+<body>
+  <header class="topbar">
+    <div class="brand">
+      <span class="logo" aria-hidden="true">🌍</span>
+      <div>
+        <h1>ClimaDash</h1>
+        <p>Indicadores de emissões de CO₂ e adoção de renováveis · ODS 13</p>
+      </div>
+    </div>
+  </header>
+
+  <main class="container">
+    <section class="cards" aria-label="Visão geral">
+      <article class="card">
+        <h2>Ano mais recente</h2>
+        <p id="card-year" class="card-value">—</p>
+      </article>
+      <article class="card">
+        <h2>Países no dataset</h2>
+        <p id="card-countries" class="card-value">—</p>
+      </article>
+      <article class="card">
+        <h2>Emissão global (Mt CO₂)</h2>
+        <p id="card-global" class="card-value">—</p>
+      </article>
+      <article class="card">
+        <h2>Renováveis (média)</h2>
+        <p id="card-renew" class="card-value">—</p>
+      </article>
+    </section>
+
+    <section class="panel">
+      <header class="panel-head">
+        <h2>Comparativo de emissões (Mt CO₂)</h2>
+        <p>Selecione até 5 países e um intervalo de anos.</p>
+      </header>
+      <div class="controls">
+        <div class="control">
+          <label for="country-select">Países</label>
+          <select id="country-select" multiple size="6"></select>
+          <small id="country-help">Use Ctrl/Cmd para múltipla seleção.</small>
+        </div>
+        <div class="control">
+          <label for="year-from">De</label>
+          <select id="year-from"></select>
+        </div>
+        <div class="control">
+          <label for="year-to">Até</label>
+          <select id="year-to"></select>
+        </div>
+        <div class="control">
+          <label for="metric">Métrica</label>
+          <select id="metric">
+            <option value="co2_total_mt" selected>CO₂ total (Mt)</option>
+            <option value="co2_per_capita_t">CO₂ per capita (t)</option>
+            <option value="renewable_share_pct">Renováveis (%)</option>
+          </select>
+        </div>
+        <div class="control control-actions">
+          <button id="apply" type="button">Aplicar</button>
+        </div>
+      </div>
+      <div class="chart-wrap">
+        <canvas id="chart-compare"></canvas>
+      </div>
+      <p id="compare-msg" class="msg" role="status"></p>
+    </section>
+
+    <section class="panel">
+      <header class="panel-head">
+        <h2 id="top-title">Top maiores emissores</h2>
+        <p>Classificação no último ano disponível.</p>
+      </header>
+      <div class="controls">
+        <div class="control">
+          <label for="top-n">N</label>
+          <select id="top-n">
+            <option>5</option>
+            <option selected>10</option>
+          </select>
+        </div>
+      </div>
+      <div class="chart-wrap">
+        <canvas id="chart-top"></canvas>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <p>Dados compilados de fontes públicas (Our World in Data / World Bank). Projeto acadêmico — Engenharia de Software.</p>
+  </footer>
+</body>
+</html>

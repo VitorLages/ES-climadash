@@ -1,0 +1,20 @@
+# Binários
+/bin/
+/server
+/climadash
+*.exe
+*.test
+*.out
+
+# Go
+*.prof
+vendor/
+
+# Editores / SO
+.idea/
+.vscode/
+.DS_Store
+*.swp
+
+# Logs
+*.log
