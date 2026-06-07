@@ -50,6 +50,20 @@ Variáveis de ambiente opcionais:
 | `PORT`       | `8080`              | Porta de escuta do servidor HTTP.          |
 | `DATA_PATH`  | `data/emissions.csv`| Caminho para o arquivo CSV de indicadores. |
 
+## Testes
+
+O projeto possui testes unitários (camada de dados) e de integração HTTP
+(handlers da API), executados com a biblioteca padrão de testes do Go:
+
+```bash
+./scripts/run-tests.sh          # go vet + go test ./...
+./scripts/run-tests.sh -c       # com relatório de cobertura
+go test ./...                   # alternativa direta
+```
+
+O plano de testes, os casos de teste (TC) e o registro de execução estão
+documentados em [TP4/TP5 — Plano de testes](docs/TP4-plano-de-testes.md).
+
 ## Estrutura do repositório
 
 ```
@@ -70,6 +84,7 @@ Variáveis de ambiente opcionais:
 - [TP1 — Requisitos](docs/TP1-requisitos.md)
 - [TP1 — Casos de uso](docs/TP1-casos-de-uso.md)
 - [TP2 — Arquitetura (C4)](docs/TP2-arquitetura.md)
+- [TP4/TP5 — Plano de testes e resultados](docs/TP4-plano-de-testes.md)
 - [Quadro de tarefas (GitHub Projects)](docs/github-project.md)
 
 ## Licença
