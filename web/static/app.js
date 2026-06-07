@@ -35,11 +35,13 @@ const PALETTE = [
 
 let compareChart = null;
 let topChart = null;
+// Último intervalo de anos válido aplicado — usado para reverter (UC04 A1).
+let lastValidRange = { from: 0, to: 0 };
 
 document.addEventListener("DOMContentLoaded", () => {
   init().catch((err) => {
     console.error(err);
-    setMessage("Falha ao iniciar: " + err.message);
+    showGlobalMessage("Falha ao carregar o painel: " + err.message, "error");
   });
 });
 
@@ -50,8 +52,22 @@ async function init() {
   ]);
 
   renderSummary(summary);
+
+  // UC01 A1 — sem dados: exibe aviso e não tenta renderizar gráficos.
+  if (!countries.length || !summary.years_covered || !summary.years_covered.length) {
+    showGlobalMessage("Sem dados disponíveis no momento.", "info");
+    setControlsEnabled(false);
+    return;
+  }
+
+  clearGlobalMessage();
+  setControlsEnabled(true);
   fillCountrySelect(countries);
   fillYearSelects(summary.years_covered);
+  lastValidRange = {
+    from: +document.getElementById("year-from").value || 0,
+    to: +document.getElementById("year-to").value || 0,
+  };
 
   document.getElementById("apply").addEventListener("click", refreshCompare);
   document.getElementById("top-n").addEventListener("change", refreshTop);
@@ -125,8 +141,10 @@ async function refreshCompare() {
   }
   const from = +document.getElementById("year-from").value || 0;
   const to = +document.getElementById("year-to").value || 0;
+  // UC04 A1 — intervalo inválido: avisa e reverte para o último intervalo válido.
   if (from && to && from > to) {
-    setMessage("Intervalo inválido: 'De' não pode ser maior que 'Até'.");
+    setMessage("Intervalo inválido: 'De' não pode ser maior que 'Até'. Revertido para o último intervalo válido.");
+    applyRange(lastValidRange);
     return;
   }
   const metric = document.getElementById("metric").value;
@@ -139,10 +157,25 @@ async function refreshCompare() {
     return;
   }
 
+  lastValidRange = { from, to };
   drawCompare(series, metric);
 }
 
+function applyRange(range) {
+  const fromSel = document.getElementById("year-from");
+  const toSel = document.getElementById("year-to");
+  if (range.from) fromSel.value = range.from;
+  if (range.to) toSel.value = range.to;
+}
+
 function drawCompare(series, metric) {
+  const totalPoints = series.reduce((acc, s) => acc + (s.points ? s.points.length : 0), 0);
+  if (totalPoints === 0) {
+    if (compareChart) { compareChart.destroy(); compareChart = null; }
+    setMessage("Sem dados para os países e o intervalo selecionados.", "info");
+    return;
+  }
+
   const ctx = document.getElementById("chart-compare").getContext("2d");
   const yearsSet = new Set();
   for (const s of series) for (const p of s.points) yearsSet.add(p.year);
@@ -186,12 +219,20 @@ function drawCompare(series, metric) {
 }
 
 async function refreshTop() {
+  setTopMessage("");
   const n = +document.getElementById("top-n").value || 10;
   let top;
   try {
     top = await API.top(n);
   } catch (err) {
     console.error(err);
+    setTopMessage("Não foi possível carregar os maiores emissores: " + err.message);
+    return;
+  }
+  if (!top.length) {
+    if (topChart) { topChart.destroy(); topChart = null; }
+    document.getElementById("top-title").textContent = "Top maiores emissores";
+    setTopMessage("Sem dados disponíveis.", "info");
     return;
   }
   document.getElementById("top-title").textContent =
@@ -229,7 +270,34 @@ function drawTop(top) {
 
 function set(id, value) { document.getElementById(id).textContent = value; }
 
-function setMessage(msg) { document.getElementById("compare-msg").textContent = msg; }
+// kind: "error" (padrão) usa cor de alerta; "info" usa cor neutra.
+function setMessage(msg, kind) { setNote("compare-msg", msg, kind); }
+function setTopMessage(msg, kind) { setNote("top-msg", msg, kind); }
+
+function setNote(id, msg, kind) {
+  const el = document.getElementById(id);
+  el.textContent = msg;
+  el.classList.toggle("info", kind === "info");
+}
+
+function showGlobalMessage(msg, kind) {
+  const el = document.getElementById("global-msg");
+  el.textContent = msg;
+  el.classList.toggle("info", kind === "info");
+  el.hidden = false;
+}
+
+function clearGlobalMessage() {
+  const el = document.getElementById("global-msg");
+  el.textContent = "";
+  el.hidden = true;
+}
+
+function setControlsEnabled(enabled) {
+  document.querySelectorAll(".panel .controls").forEach((c) => {
+    c.classList.toggle("is-disabled", !enabled);
+  });
+}
 
 function fmt(n) {
   if (n == null) return "—";

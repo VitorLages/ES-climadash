@@ -186,6 +186,29 @@ html, body {
   min-height: 1em;
 }
 
+/* mensagem neutra/informativa (estado vazio), distinta de erro */
+.msg.info { color: var(--muted); }
+
+.global-msg {
+  background: rgba(248, 113, 113, 0.12);
+  border: 1px solid var(--danger);
+  color: var(--text);
+  border-radius: var(--radius);
+  padding: 14px 18px;
+  font-size: 14px;
+}
+
+.global-msg.info {
+  background: rgba(96, 165, 250, 0.12);
+  border-color: var(--accent-2);
+}
+
+/* desabilita controles enquanto não há dados */
+.is-disabled {
+  opacity: 0.5;
+  pointer-events: none;
+}
+
 .footer {
   text-align: center;
   color: var(--muted);

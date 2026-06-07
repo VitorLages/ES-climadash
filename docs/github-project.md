@@ -8,7 +8,7 @@ Cada item é um *card* a ser criado no Projects, organizado por coluna:
 - **In Progress** — em execução no sprint corrente.
 - **Done** — concluídos.
 
-Conforme o enunciado, ao final de cada TP a coluna **TODO** deve conter as tarefas do sprint seguinte (na entrega do TP1, TODO = tarefas do TP2; na do TP2, TODO = TP3; etc.). Como a entrega aqui cobre **TP1 → TP3**, os itens dos sprints concluídos estão em **Done**, e o **TODO** contém o planejamento do **TP4**.
+Conforme o enunciado, ao final de cada TP a coluna **TODO** deve conter as tarefas do sprint seguinte (na entrega do TP1, TODO = tarefas do TP2; na do TP2, TODO = TP3; etc.). Como a entrega aqui cobre **TP1 → TP5**, os itens dos sprints concluídos estão em **Done**, e o **TODO** contém o planejamento do **TP6**.
 
 > **Como usar:** crie um Project (Board) no repositório com as colunas acima e replique os cards desta tabela. Conforme avançar, altere o status diretamente no GitHub (a fonte da verdade é o Projects; este arquivo é um snapshot inicial).
 
@@ -65,35 +65,33 @@ Conforme o enunciado, ao final de cada TP a coluna **TODO** deve conter as taref
 | 35 | Smoke test end-to-end (curl + abertura no navegador) | TP3 | Done |
 | 36 | Atualizar GitHub Projects com tarefas do TP4 | TP3 | Done |
 
-## Sprint TP4 — Sprint de Desenvolvimento + Plano de Testes  *(planejado)*
-
-> **Estes cards são o conteúdo da coluna TODO ao final do TP3.**
+## Sprint TP4 — Sprint de Desenvolvimento + Plano de Testes
 
 | # | Card | Sprint | Status |
 |---|------|--------|--------|
-| 37 | Definir formato padrão do plano de testes (template TC) | TP4 | Todo |
-| 38 | Escrever 3 casos de teste para UC01 — Visualizar visão geral | TP4 | Todo |
-| 39 | Escrever 3 casos de teste para UC02 — Consultar série histórica | TP4 | Todo |
-| 40 | Escrever 3 casos de teste para UC03 — Comparar países | TP4 | Todo |
-| 41 | Escrever 3 casos de teste para UC04 — Filtrar por intervalo de anos | TP4 | Todo |
-| 42 | Escrever 3 casos de teste para UC05 — Listar Top N emissores | TP4 | Todo |
-| 43 | Adicionar testes unitários para `internal/data` (parsing, filtros) | TP4 | Todo |
-| 44 | Adicionar testes de integração HTTP (`httptest`) para handlers | TP4 | Todo |
-| 45 | Melhorias de UX no frontend (mensagens de erro, estados vazios) | TP4 | Todo |
-| 46 | Página `docs/TP4-plano-de-testes.md` consolidando os TCs | TP4 | Todo |
-| 47 | Atualizar GitHub Projects com tarefas do TP5 | TP4 | Todo |
+| 37 | Definir formato padrão do plano de testes (template TC) | TP4 | Done |
+| 38 | Escrever 3 casos de teste para UC01 — Visualizar visão geral | TP4 | Done |
+| 39 | Escrever 3 casos de teste para UC02 — Consultar série histórica | TP4 | Done |
+| 40 | Escrever 3 casos de teste para UC03 — Comparar países | TP4 | Done |
+| 41 | Escrever 3 casos de teste para UC04 — Filtrar por intervalo de anos | TP4 | Done |
+| 42 | Escrever 3 casos de teste para UC05 — Listar Top N emissores | TP4 | Done |
+| 43 | Adicionar testes unitários para `internal/data` (parsing, filtros) | TP4 | Done |
+| 44 | Adicionar testes de integração HTTP (`httptest`) para handlers | TP4 | Done |
+| 45 | Melhorias de UX no frontend (mensagens de erro, estados vazios) | TP4 | Done |
+| 46 | Página `docs/TP4-plano-de-testes.md` consolidando os TCs | TP4 | Done |
+| 47 | Atualizar GitHub Projects com tarefas do TP5 | TP4 | Done |
 
-## Sprint TP5 — Execução dos Testes  *(backlog)*
+## Sprint TP5 — Execução dos Testes
 
 | # | Card | Sprint | Status |
 |---|------|--------|--------|
-| 48 | Executar todos os TCs do plano e registrar resultados | TP5 | Backlog |
-| 49 | Corrigir defeitos descobertos durante a execução dos TCs | TP5 | Backlog |
-| 50 | Automatizar execução de testes unitários (`go test ./...`) em script | TP5 | Backlog |
-| 51 | Atualizar `docs/TP4-plano-de-testes.md` com colunas de resultado | TP5 | Backlog |
-| 52 | Atualizar GitHub Projects com tarefas do TP6 | TP5 | Backlog |
+| 48 | Executar todos os TCs do plano e registrar resultados | TP5 | Done |
+| 49 | Corrigir defeitos descobertos durante a execução dos TCs | TP5 | Done |
+| 50 | Automatizar execução de testes unitários (`go test ./...`) em script | TP5 | Done |
+| 51 | Atualizar `docs/TP4-plano-de-testes.md` com colunas de resultado | TP5 | Done |
+| 52 | Atualizar GitHub Projects com tarefas do TP6 | TP5 | Done |
 
-## Sprint TP6 — Entrega Final  *(backlog)*
+## Sprint TP6 — Entrega Final  *(planejado — coluna TODO ao final do TP5)*
 
 | # | Card | Sprint | Status |
 |---|------|--------|--------|
@@ -105,11 +103,11 @@ Conforme o enunciado, ao final de cada TP a coluna **TODO** deve conter as taref
 
 ---
 
-## Resumo por status (snapshot atual — pós-TP3)
+## Resumo por status (snapshot atual — pós-TP5)
 
 | Status | Quantidade |
 |--------|------------|
-| Done | 36 |
-| Todo (TP4) | 11 |
-| Backlog (TP5+TP6) | 10 |
+| Done (TP1–TP5) | 52 |
+| Todo (TP6) | 5 |
+| Backlog | 0 |
 | **Total** | **57** |
