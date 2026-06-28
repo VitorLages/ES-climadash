@@ -39,6 +39,7 @@ let topChart = null;
 let lastValidRange = { from: 0, to: 0 };
 
 document.addEventListener("DOMContentLoaded", () => {
+  showGlobalMessage("Carregando dados…", "info");
   init().catch((err) => {
     console.error(err);
     showGlobalMessage("Falha ao carregar o painel: " + err.message, "error");
@@ -149,12 +150,20 @@ async function refreshCompare() {
   }
   const metric = document.getElementById("metric").value;
 
+  const btn = document.getElementById("apply");
+  const prevLabel = btn.textContent;
+  btn.disabled = true;
+  btn.textContent = "Atualizando…";
+
   let series;
   try {
     series = await API.emissions(countries, from, to);
   } catch (err) {
     setMessage(err.message);
     return;
+  } finally {
+    btn.disabled = false;
+    btn.textContent = prevLabel;
   }
 
   lastValidRange = { from, to };
