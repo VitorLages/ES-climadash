@@ -20,7 +20,10 @@
   </header>
 
   <main class="container">
-    <div id="global-msg" class="global-msg" role="alert" hidden></div>
+    <noscript>
+      <div class="global-msg">Este dashboard requer JavaScript habilitado para exibir os gráficos.</div>
+    </noscript>
+    <div id="global-msg" class="global-msg" role="alert" aria-live="polite" hidden></div>
 
     <section class="cards" aria-label="Visão geral">
       <article class="card">
@@ -101,6 +104,7 @@
 
   <footer class="footer">
     <p>Dados compilados de fontes públicas (Our World in Data / World Bank). Projeto acadêmico — Engenharia de Software.</p>
+    <p><a href="https://github.com/VitorLages/ES-climadash" class="footer-link">Código-fonte e documentação no GitHub</a> · ClimaDash v1.0.0</p>
   </footer>
 </body>
 </html>

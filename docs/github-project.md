@@ -8,7 +8,7 @@ Cada item é um *card* a ser criado no Projects, organizado por coluna:
 - **In Progress** — em execução no sprint corrente.
 - **Done** — concluídos.
 
-Conforme o enunciado, ao final de cada TP a coluna **TODO** deve conter as tarefas do sprint seguinte (na entrega do TP1, TODO = tarefas do TP2; na do TP2, TODO = TP3; etc.). Como a entrega aqui cobre **TP1 → TP5**, os itens dos sprints concluídos estão em **Done**, e o **TODO** contém o planejamento do **TP6**.
+Conforme o enunciado, ao final de cada TP a coluna **TODO** deve conter as tarefas do sprint seguinte (na entrega do TP1, TODO = tarefas do TP2; na do TP2, TODO = TP3; etc.). Esta é a **entrega final (TP1 → TP6)**, correspondente à release **v1.0.0**: todos os cards estão em **Done** e não há sprints subsequentes planejados.
 
 > **Como usar:** crie um Project (Board) no repositório com as colunas acima e replique os cards desta tabela. Conforme avançar, altere o status diretamente no GitHub (a fonte da verdade é o Projects; este arquivo é um snapshot inicial).
 
@@ -91,23 +91,23 @@ Conforme o enunciado, ao final de cada TP a coluna **TODO** deve conter as taref
 | 51 | Atualizar `docs/TP4-plano-de-testes.md` com colunas de resultado | TP5 | Done |
 | 52 | Atualizar GitHub Projects com tarefas do TP6 | TP5 | Done |
 
-## Sprint TP6 — Entrega Final  *(planejado — coluna TODO ao final do TP5)*
+## Sprint TP6 — Entrega Final
 
 | # | Card | Sprint | Status |
 |---|------|--------|--------|
-| 53 | Revisão geral da documentação | TP6 | Backlog |
-| 54 | Polimento final do frontend | TP6 | Backlog |
-| 55 | Verificar cobertura de todos os RF e RNF | TP6 | Backlog |
-| 56 | Atualizar README com instruções finais | TP6 | Backlog |
-| 57 | Tag de release `v1.0.0` no repositório | TP6 | Backlog |
+| 53 | Revisão geral da documentação | TP6 | Done |
+| 54 | Polimento final do frontend | TP6 | Done |
+| 55 | Verificar cobertura de todos os RF e RNF | TP6 | Done |
+| 56 | Atualizar README com instruções finais | TP6 | Done |
+| 57 | Tag de release `v1.0.0` no repositório | TP6 | Done |
 
 ---
 
-## Resumo por status (snapshot atual — pós-TP5)
+## Resumo por status (entrega final — v1.0.0)
 
 | Status | Quantidade |
 |--------|------------|
-| Done (TP1–TP5) | 52 |
-| Todo (TP6) | 5 |
+| Done (TP1–TP6) | 57 |
+| Todo | 0 |
 | Backlog | 0 |
 | **Total** | **57** |

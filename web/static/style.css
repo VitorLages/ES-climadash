@@ -218,6 +218,21 @@ html, body {
   margin-top: 24px;
 }
 
+.footer p { margin: 4px 0; }
+
+.footer-link {
+  color: var(--accent-2);
+  text-decoration: none;
+}
+
+.footer-link:hover { text-decoration: underline; }
+
+/* botão desabilitado durante atualização */
+.control button:disabled {
+  cursor: progress;
+  filter: brightness(0.8);
+}
+
 @media (max-width: 640px) {
   .control select,
   .control button { min-width: 100%; }

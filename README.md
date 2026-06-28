@@ -4,12 +4,18 @@ Dashboard de dados desenvolvido em Go que apresenta indicadores de emissões de 
 
 Projeto desenvolvido como trabalho prático da disciplina de **Engenharia de Software**.
 
+> **Status:** versão **v1.0.0** — todos os requisitos (RF01–RF11, RNF01–RNF08)
+> implementados e verificados. Ver [cobertura de requisitos](docs/TP6-cobertura-requisitos.md).
+
 ## Sumário
 
 - [Sobre o projeto](#sobre-o-projeto)
 - [ODS abordado](#ods-abordado)
 - [Stack](#stack)
 - [Como executar](#como-executar)
+- [API REST](#api-rest)
+- [Testes](#testes)
+- [Demonstração](#demonstração)
 - [Estrutura do repositório](#estrutura-do-repositório)
 - [Documentação](#documentação)
 
@@ -50,6 +56,28 @@ Variáveis de ambiente opcionais:
 | `PORT`       | `8080`              | Porta de escuta do servidor HTTP.          |
 | `DATA_PATH`  | `data/emissions.csv`| Caminho para o arquivo CSV de indicadores. |
 
+## API REST
+
+Todos os endpoints respondem JSON e aceitam apenas o método `GET`.
+
+| Método | Endpoint | Descrição | Parâmetros |
+|--------|----------|-----------|------------|
+| GET | `/api/health` | Verificação de saúde do serviço. | — |
+| GET | `/api/summary` | Visão geral agregada do último ano. | — |
+| GET | `/api/countries` | Lista de países do dataset. | — |
+| GET | `/api/countries/{país}` | Série histórica de um país. | `from`, `to` (opcionais) |
+| GET | `/api/years` | Anos disponíveis no dataset. | — |
+| GET | `/api/emissions` | Séries de múltiplos países (até 5). | `countries` (obrigatório), `from`, `to` |
+| GET | `/api/top` | Top N maiores emissores no último ano. | `n` (padrão 5) |
+
+Exemplos:
+
+```bash
+curl http://localhost:8080/api/summary
+curl "http://localhost:8080/api/emissions?countries=Brazil,China&from=2015&to=2022"
+curl "http://localhost:8080/api/top?n=10"
+```
+
 ## Testes
 
 O projeto possui testes unitários (camada de dados) e de integração HTTP
@@ -63,6 +91,13 @@ go test ./...                   # alternativa direta
 
 O plano de testes, os casos de teste (TC) e o registro de execução estão
 documentados em [TP4/TP5 — Plano de testes](docs/TP4-plano-de-testes.md).
+Cobertura automatizada: **95,6%** em `internal/data` e **80,0%** em
+`internal/handlers`.
+
+## Demonstração
+
+Um vídeo de demonstração do dashboard em uso está disponível na pasta
+[`Videos/`](Videos/) do repositório.
 
 ## Estrutura do repositório
 
@@ -75,6 +110,7 @@ documentados em [TP4/TP5 — Plano de testes](docs/TP4-plano-de-testes.md).
 │   └── models/            # tipos de domínio
 ├── web/static/            # frontend (HTML, CSS, JS)
 ├── data/                  # dataset CSV
+├── scripts/               # automação (run-tests.sh)
 ├── docs/                  # documentação (TPs, diagramas, board)
 └── README.md
 ```
@@ -85,6 +121,7 @@ documentados em [TP4/TP5 — Plano de testes](docs/TP4-plano-de-testes.md).
 - [TP1 — Casos de uso](docs/TP1-casos-de-uso.md)
 - [TP2 — Arquitetura (C4)](docs/TP2-arquitetura.md)
 - [TP4/TP5 — Plano de testes e resultados](docs/TP4-plano-de-testes.md)
+- [TP6 — Cobertura de requisitos](docs/TP6-cobertura-requisitos.md)
 - [Quadro de tarefas (GitHub Projects)](docs/github-project.md)
 
 ## Licença
